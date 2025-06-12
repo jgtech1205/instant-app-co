@@ -92,7 +92,9 @@ export default function IntakeForm() {
       phone_number: formData.phoneNumber,
       app_type: formData.appType.join(', '),
       from_email: formData.email,
-      email: formData.email // Keep this for compatibility
+      email: formData.email, 
+      main_goal: formData.mainGoal,
+      branding_assets: formData.brandingAssets.join(', '),
     };
 
     try {
