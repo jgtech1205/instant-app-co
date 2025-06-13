@@ -417,6 +417,7 @@ function HomePage() {
               <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               <a href="https://calendly.com/jgtech1205/30min" className="hover:text-white transition-colors">Contact</a>
+              <a href="mailto:sales@instantappbuilder.com" className="hover:text-white transition-colors">sales@instantappbuilder.com</a>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-slate-800 text-center text-gray-400">
