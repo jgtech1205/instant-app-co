@@ -83,40 +83,49 @@ export default function IntakeForm() {
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
-    const templateParams = {
-      name: formData.contactName,
+    const payload = {
+      companyName: formData.companyName,
+      websiteUrl: formData.websiteUrl,
+      contactName: formData.contactName,
       email: formData.email,
-      main_goal: formData.mainGoal,
-      branding_assets: formData.brandingAssets.join(', ')
+      phoneNumber: formData.phoneNumber,
+      appType: formData.appType,
+      platforms: formData.platforms,
+      mainGoal: formData.mainGoal,
+      brandingAssets: formData.brandingAssets,
     };
 
     try {
-      const result = await emailjs.send(
-        'service_is0x41b',
-        'template_521xrgx',
-        templateParams,
-        'D7WxUsMlMNubYJQk1'
-      );
-      console.log(result.text);
-      setSubmitStatus({
-        type: 'success',
-        message: `Thank you! Your application has been submitted successfully. 
-        \n\nWould you like to schedule a consultation now? 
-        Click here: https://calendly.com/jgtech1205/30min`
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
-      // Reset form
-      setFormData({
-        service: '',
-        companyName: '',
-        websiteUrl: '',
-        contactName: '',
-        email: '',
-        phoneNumber: '',
-        appType: [],
-        platforms: [],
-        mainGoal: '',
-        brandingAssets: [],
-      });
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: `Thank you! Your application has been submitted successfully. \n\nWould you like to schedule a consultation now? Click here: https://calendly.com/jgtech1205/30min`
+        });
+
+        setFormData({
+          service: '',
+          companyName: '',
+          websiteUrl: '',
+          contactName: '',
+          email: '',
+          phoneNumber: '',
+          appType: [],
+          platforms: [],
+          mainGoal: '',
+          brandingAssets: [],
+        });
+
+      } else {
+        throw new Error('Failed to send email');
+      }
     } catch (error) {
       console.error('Error sending form:', error);
       setSubmitStatus({
