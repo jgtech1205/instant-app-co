@@ -86,13 +86,13 @@ export default function IntakeForm() {
     // Prepare the email template parameters
     const templateParams = {
       service: formData.service,
-      from_name: formData.contactName,
       company_name: formData.companyName,
       website_url: formData.websiteUrl,
+      from_name: formData.contactName,
+      from_email: formData.email,
       phone_number: formData.phoneNumber,
       app_type: formData.appType.join(', '),
-      from_email: formData.email,
-      email: formData.email, 
+      platforms: formData.platforms.join(', '),
       main_goal: formData.mainGoal,
       branding_assets: formData.brandingAssets.join(', '),
     };
