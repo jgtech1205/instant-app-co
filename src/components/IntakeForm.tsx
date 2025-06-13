@@ -83,49 +83,40 @@ export default function IntakeForm() {
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
-    // Prepare the email template parameters
     const templateParams = {
-      service: formData.service,
-      company_name: formData.companyName,
-      website_url: formData.websiteUrl,
-      from_name: formData.contactName,
-      from_email: formData.email,
-      phone_number: formData.phoneNumber,
-      app_type: formData.appType.join(', '),
-      platforms: formData.platforms.join(', '),
+      name: formData.contactName,
+      email: formData.email,
       main_goal: formData.mainGoal,
-      branding_assets: formData.brandingAssets.join(', '),
+      branding_assets: formData.brandingAssets.join(', ')
     };
 
     try {
       const result = await emailjs.send(
-        'service_6hfk8jq',
+        'service_is0x41b',
         'template_521xrgx',
         templateParams,
         'D7WxUsMlMNubYJQk1'
       );
-
-      if (result.status === 200) {
-        setSubmitStatus({
-          type: 'success',
-          message: `Thank you! Your application has been submitted successfully. 
-          \n\nWould you like to schedule a consultation now? 
-          Click here: https://calendly.com/jgtech1205/30min`
-        });
-        // Reset form
-        setFormData({
-          service: '',
-          companyName: '',
-          websiteUrl: '',
-          contactName: '',
-          email: '',
-          phoneNumber: '',
-          appType: [],
-          platforms: [],
-          mainGoal: '',
-          brandingAssets: [],
-        });
-      }
+      console.log(result.text);
+      setSubmitStatus({
+        type: 'success',
+        message: `Thank you! Your application has been submitted successfully. 
+        \n\nWould you like to schedule a consultation now? 
+        Click here: https://calendly.com/jgtech1205/30min`
+      });
+      // Reset form
+      setFormData({
+        service: '',
+        companyName: '',
+        websiteUrl: '',
+        contactName: '',
+        email: '',
+        phoneNumber: '',
+        appType: [],
+        platforms: [],
+        mainGoal: '',
+        brandingAssets: [],
+      });
     } catch (error) {
       console.error('Error sending form:', error);
       setSubmitStatus({
@@ -233,7 +224,7 @@ export default function IntakeForm() {
                     value={formData.websiteUrl}
                     onChange={handleInputChange}
                     placeholder="example.com"
-                    pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$"
+                    pattern="^(https?:\\/\\/)?([\\da-z.-]+)\\.([a-z.]{2,6})([\\/\\w.-]*)*\\/?$"
                     className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                     required
                   />
