@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Smartphone, Zap, DollarSign, Rocket, CheckCircle, ArrowRight, Globe, Download, Star, Users, Clock, Shield, Scissors, Sparkles, ChefHat, Dumbbell, Calendar, CreditCard, TrendingUp } from 'lucide-react';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
-import IntakeForm from './components/IntakeForm';
 
 function HomePage() {
   return (
@@ -37,10 +36,15 @@ function HomePage() {
               We help businesses like yours turn their websites into fully branded mobile apps — quickly, affordably, and without rebuilding anything from scratch.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <Link to="/apply" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <a
+                href="https://calendly.com/jgtech1205/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
                 Start Your App Today
                 <ArrowRight className="inline ml-2 h-5 w-5" />
-              </Link>
+              </a>
               <a href="#process" className="border-2 border-gray-600 hover:border-gray-400 text-gray-300 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300">
                 See How It Works
               </a>
@@ -366,10 +370,15 @@ function HomePage() {
           </div>
 
           <div className="text-center mt-16">
-            <Link to="/apply" className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center">
+            <a
+              href="https://calendly.com/jgtech1205/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center"
+            >
               Get Started for $299
               <Calendar className="ml-2 h-5 w-5" />
-            </Link>
+            </a>
             <p className="text-gray-400 mt-4 text-sm">Includes app store submission & lifetime ownership</p>
           </div>
         </div>
@@ -426,7 +435,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
-        <Route path="/apply" element={<IntakeForm />} />
       </Routes>
     </Router>
   );
